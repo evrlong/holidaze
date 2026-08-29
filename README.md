@@ -1,1 +1,1 @@
-# holidazye
+# holidaze
