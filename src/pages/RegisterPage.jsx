@@ -8,6 +8,7 @@ export function RegisterPage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [venueManager, setVenueManager] = useState(false);
   const navigate = useNavigate();
 
   const mutation = useMutation({
@@ -19,50 +20,71 @@ export function RegisterPage() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    mutation.mutate({ email, name: username, password });
+    mutation.mutate({ email, name: username, password, venueManager });
   }
   return (
-    <main className="mx-auto max-w-sm p-8">
-      <h1 className="mb-4 text-3xl font-bold">Register</h1>
+    <main className="mx-auto max-w-lg p-8">
+      <h1 className="mb-4 text-3xl font-bold text-neutral-400">
+        Create an account
+      </h1>
+      <h2 className="mb-4 text-xl text-neutral-300">
+        Book unique stays or manage your own venues — all in one place
+      </h2>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Username:</label>
           <input
             type="text"
+            placeholder="Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            className="w-full rounded border border-gray-300 p-2"
           />
         </div>
         <div>
-          <label>Password:</label>
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full rounded border border-gray-300 p-2"
+          />
+        </div>
+
+        <div>
           <input
             type="password"
+            placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            className="w-full rounded border border-gray-300 p-2"
           />
         </div>
         <div>
-          <label>Confirm Password:</label>
           <input
             type="password"
+            placeholder="Confirm Password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+            className="w-full rounded border border-gray-300 p-2"
           />
         </div>
+        <div>
+          <label>
+            <input
+              type="checkbox"
+              checked={venueManager}
+              onChange={(e) => setVenueManager(e.target.checked)}
+              className="mr-2"
+            />
+            I also want to host on Holidaze
+          </label>
+        </div>
         <button
-          className="bg-blue-600 text-white"
+          className="bg-mint-900 rounded px-4 py-2 font-bold text-white"
           type="submit"
           disabled={mutation.isPending}
         >
-          {mutation.isPending ? "Registering..." : "Register"}
+          {mutation.isPending ? "Creating..." : "Create new account"}
         </button>
         {mutation.error && (
           <p className="text-red-600">{mutation.error.message}</p>
