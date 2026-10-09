@@ -102,7 +102,7 @@ export function RegisterPage() {
               type="checkbox"
               checked={venueManager}
               onChange={(e) => setVenueManager(e.target.checked)}
-              className="mr-2"
+              className="accent-mint-600 mr-2"
             />
             I also want to host on Holidaze
           </label>
