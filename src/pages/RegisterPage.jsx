@@ -115,7 +115,7 @@ export function RegisterPage() {
           {mutation.isPending ? "Creating..." : "Create new account"}
         </button>
         {mutation.error && (
-          <p className="text-red-600">{mutation.error.message}</p>
+          <p className="text-error-600">{mutation.error.message}</p>
         )}
       </form>
     </main>
