@@ -15,7 +15,6 @@ export function LoginPage() {
   const errors = {
     email: validateEmail(email),
   };
-  const hasErrors = Object.values(errors).some(Boolean);
 
   const mutation = useMutation({
     mutationFn: loginUser,
