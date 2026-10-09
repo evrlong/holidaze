@@ -40,7 +40,7 @@ export function RegisterPage() {
     console.log({ email, name: username, venueManager });
   }
   return (
-    <main className="mx-auto max-w-lg p-8">
+    <main className="mx-auto max-w-sm p-8">
       <h1 className="mb-4 text-3xl font-bold text-neutral-400">
         Create an account
       </h1>
@@ -108,7 +108,7 @@ export function RegisterPage() {
           </label>
         </div>
         <button
-          className="bg-mint-900 rounded px-4 py-2 font-bold text-white"
+          className="bg-mint-900 w-full rounded px-4 py-2 font-bold text-white"
           type="submit"
           disabled={mutation.isPending || hasErrors}
         >
