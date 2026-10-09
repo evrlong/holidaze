@@ -9,7 +9,8 @@ export async function loginUser({ email, password }) {
     body: JSON.stringify({ email, password }),
   });
   if (!response.ok) {
-    throw new Error("Failed to login");
+    const json = await response.json();
+    throw new Error(json.errors?.[0]?.message ?? "Failed to login");
   }
   return response.json();
 }
@@ -23,7 +24,8 @@ export async function registerUser({ email, password, name, venueManager }) {
     body: JSON.stringify({ email, password, name, venueManager }),
   });
   if (!response.ok) {
-    throw new Error("Failed to register");
+    const json = await response.json();
+    throw new Error(json.errors?.[0]?.message ?? "Failed to register");
   }
   return response.json();
 }

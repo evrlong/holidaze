@@ -17,9 +17,14 @@ export function Layout() {
             </button>
           </>
         ) : (
-          <Link to="/login" className="ml-4 text-blue-600 underline">
-            Logg inn
-          </Link>
+          <>
+            <Link to="/login" className="ml-4 text-blue-600 underline">
+              Logg inn
+            </Link>
+            <Link to="/register" className="ml-4 text-green-600 underline">
+              Registrer
+            </Link>
+          </>
         )}
       </header>
 
