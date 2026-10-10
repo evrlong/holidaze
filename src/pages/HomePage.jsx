@@ -10,6 +10,7 @@ export function HomePage() {
   return (
     <main className="p-8">
       <h1 className="mb-4 text-3xl font-bold">Venues</h1>
+      <h2 className="mb-4 text-2xl font-bold">showing {data.length} venues</h2>
       <ul className="space-y-2">
         {data.map((venue) => (
           <li key={venue.id}>
@@ -17,7 +18,7 @@ export function HomePage() {
               to={`/venues/${venue.id}`}
               className="text-blue-600 underline"
             >
-              {venue.name}
+              {venue.name} -{venue.rating}
             </Link>
           </li>
         ))}
