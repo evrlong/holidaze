@@ -1,7 +1,15 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import type { User } from "./types";
 
-export const useAuthStore = create(
+type AuthState = {
+  user: User | null;
+  accessToken: string | null;
+  setUser: (user: User, accessToken: string) => void;
+  clearUser: () => void;
+};
+
+export const useAuthStore = create<AuthState>()(
   persist(
     (set) => ({
       user: null,

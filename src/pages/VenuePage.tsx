@@ -1,10 +1,10 @@
 import { useParams, Link } from "react-router";
-import { useVenueById } from "../features/venues/useVenues.js";
+import { useVenueById } from "../features/venues/useVenues";
 
 export function VenuePage() {
   const { id } = useParams();
   const { data: venue, isLoading, error } = useVenueById(id);
-  if (isLoading) return <p className="p-8">Laster...</p>;
+  if (isLoading || !venue) return <p className="p-8">Laster...</p>;
   if (error) return <p className="p-8">Noe gikk galt: {error.message}</p>;
 
   return (

@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { useNavigate } from "react-router";
 import { useMutation } from "@tanstack/react-query";
-import { loginUser } from "../features/auth/api.js";
-import { useAuthStore } from "../features/auth/authStore.js";
-import FieldFeedback from "../components/FieldFeedback.jsx";
-import { validateEmail } from "../utils/validation.js";
+import { loginUser } from "../features/auth/api";
+import { useAuthStore } from "../features/auth/authStore";
+import FieldFeedback from "../components/FieldFeedback";
+import { validateEmail } from "../utils/validation";
 
 export function LoginPage() {
   const [email, setEmail] = useState("");
@@ -19,13 +19,13 @@ export function LoginPage() {
   const mutation = useMutation({
     mutationFn: loginUser,
     onSuccess: (data) => {
-      const { accessToken, ...user } = data;
+      const { accessToken, ...user } = data.data;
       login(user, accessToken);
       navigate("/");
     },
   });
 
-  function handleSubmit(event) {
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     mutation.mutate({ email, password });
   }

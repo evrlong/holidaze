@@ -1,11 +1,11 @@
 import { Link } from "react-router";
-import { useVenues } from "../features/venues/useVenues.js";
-import { VenueCard } from "../components/venue/VenueCard.jsx";
+import { useVenues } from "../features/venues/useVenues";
+import { VenueCard } from "../components/venue/VenueCard";
 
 export function HomePage() {
   const { data, isLoading, error } = useVenues();
 
-  if (isLoading) return <p className="p-8">Laster...</p>;
+  if (isLoading || !data) return <p className="p-8">Laster...</p>;
   if (error) return <p className="p-8">Noe gikk galt: {error.message}</p>;
 
   return (

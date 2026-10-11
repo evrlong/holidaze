@@ -1,4 +1,9 @@
-export function FieldFeedback({ value, error }) {
+type FieldFeedbackProps = {
+  value: string;
+  error?: string;
+};
+
+export function FieldFeedback({ value, error }: FieldFeedbackProps) {
   if (!value) return null;
   return error ? (
     <p className="text-error-600">{error}</p>

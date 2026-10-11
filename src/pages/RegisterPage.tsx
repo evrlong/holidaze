@@ -1,14 +1,14 @@
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { useNavigate } from "react-router";
 import { useMutation } from "@tanstack/react-query";
-import { registerUser } from "../features/auth/api.js";
+import { registerUser } from "../features/auth/api";
 import {
   validateName,
   validateEmail,
   validatePassword,
   validateConfirmPassword,
-} from "../utils/validation.js";
-import { FieldFeedback } from "../components/FieldFeedback.jsx";
+} from "../utils/validation";
+import { FieldFeedback } from "../components/FieldFeedback";
 
 export function RegisterPage() {
   const [email, setEmail] = useState("");
@@ -33,7 +33,7 @@ export function RegisterPage() {
     },
   });
 
-  function handleSubmit(event) {
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (hasErrors) return;
     mutation.mutate({ email, name: username, password, venueManager });

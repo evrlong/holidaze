@@ -1,5 +1,5 @@
 import { Link, Outlet } from "react-router";
-import { useAuthStore } from "../features/auth/authStore.js";
+import { useAuthStore } from "../features/auth/authStore";
 import { FaFacebook, FaXTwitter, FaInstagram } from "react-icons/fa6";
 
 export function Layout() {

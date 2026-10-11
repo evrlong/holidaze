@@ -1,6 +1,14 @@
-import { API_BASE } from "../../lib/constants.js";
+import { API_BASE } from "../../lib/constants";
+import type { ApiResponse } from "../../lib/types";
+import type { LoginResponse, User } from "./types";
 
-export async function loginUser({ email, password }) {
+export async function loginUser({
+  email,
+  password,
+}: {
+  email: string;
+  password: string;
+}): Promise<ApiResponse<LoginResponse>> {
   const response = await fetch(`${API_BASE}/auth/login`, {
     method: "POST",
     headers: {
@@ -15,7 +23,17 @@ export async function loginUser({ email, password }) {
   return response.json();
 }
 
-export async function registerUser({ email, password, name, venueManager }) {
+export async function registerUser({
+  email,
+  password,
+  name,
+  venueManager,
+}: {
+  email: string;
+  password: string;
+  name: string;
+  venueManager: boolean;
+}): Promise<ApiResponse<User>> {
   const response = await fetch(`${API_BASE}/auth/register`, {
     method: "POST",
     headers: {

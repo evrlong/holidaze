@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchVenues, fetchVenueById } from "./api.js";
+import { fetchVenues, fetchVenueById } from "./api";
 
 export function useVenues() {
   return useQuery({
@@ -8,9 +8,10 @@ export function useVenues() {
   });
 }
 
-export function useVenueById(id) {
+export function useVenueById(id: string | undefined) {
   return useQuery({
     queryKey: ["venue", id],
-    queryFn: () => fetchVenueById(id),
+    queryFn: () => fetchVenueById(id!),
+    enabled: !!id,
   });
 }

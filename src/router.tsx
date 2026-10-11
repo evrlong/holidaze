@@ -1,9 +1,9 @@
 import { createBrowserRouter } from "react-router";
-import { HomePage } from "./pages/HomePage.jsx";
-import { VenuePage } from "./pages/VenuePage.jsx";
-import { Layout } from "./components/Layout.jsx";
-import { LoginPage } from "./pages/LoginPage.jsx";
-import { RegisterPage } from "./pages/RegisterPage.jsx";
+import { HomePage } from "./pages/HomePage";
+import { VenuePage } from "./pages/VenuePage";
+import { Layout } from "./components/Layout";
+import { LoginPage } from "./pages/LoginPage";
+import { RegisterPage } from "./pages/RegisterPage";
 
 export const router = createBrowserRouter([
   {
