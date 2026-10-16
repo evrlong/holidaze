@@ -8,7 +8,7 @@ export async function loginUser({
 }: {
   email: string;
   password: string;
-}): Promise<ApiResponse<LoginResponse>> {
+}): Promise<LoginResponse> {
   const response = await fetch(`${API_BASE}/auth/login`, {
     method: "POST",
     headers: {
@@ -20,7 +20,9 @@ export async function loginUser({
     const json = await response.json();
     throw new Error(json.errors?.[0]?.message ?? "Failed to login");
   }
-  return response.json();
+
+  const json = await response.json();
+  return json.data;
 }
 
 export async function registerUser({

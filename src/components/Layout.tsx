@@ -4,13 +4,14 @@ import { FaFacebook, FaXTwitter, FaInstagram } from "react-icons/fa6";
 
 export function Layout() {
   const { user, clearUser } = useAuthStore();
-  console.log(user);
+
   return (
     <div className="flex min-h-screen flex-col">
       <header className="bg-mint-800 relative z-10 flex items-center justify-between p-8 shadow-lg">
         <Link to="/" className="text-mint-50 text-3xl font-bold">
           Holidaze
         </Link>
+        {user && <span className="ml-4">Hei, {user.name}</span>}
         <div className="flex items-center">
           <Link
             to="/"

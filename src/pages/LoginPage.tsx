@@ -19,7 +19,7 @@ export function LoginPage() {
   const mutation = useMutation({
     mutationFn: loginUser,
     onSuccess: (data) => {
-      const { accessToken, ...user } = data.data;
+      const { accessToken, ...user } = data;
       login(user, accessToken);
       navigate("/");
     },
