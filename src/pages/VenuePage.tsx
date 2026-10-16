@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router";
 import { useVenueById } from "../features/venues/useVenues";
-import { BookingForm } from "../features/bookingsystem/BookingForm";
+import { BookingForm } from "../features/bookingSystem/BookingForm";
 
 export function VenuePage() {
   const { id } = useParams();
