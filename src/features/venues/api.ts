@@ -10,7 +10,9 @@ export async function fetchVenues(): Promise<Venue[]> {
 }
 
 export async function fetchVenueById(id: string): Promise<Venue> {
-  const response = await fetch(`${API_BASE}/holidaze/venues/${id}`);
+  const response = await fetch(
+    `${API_BASE}/holidaze/venues/${id}?_bookings=true`,
+  );
   if (!response.ok) throw new Error("Could not fetch venue");
   const json: ApiResponse<Venue> = await response.json();
   return json.data;

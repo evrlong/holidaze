@@ -10,7 +10,7 @@ export function useVenues() {
 
 export function useVenueById(id: string | undefined) {
   return useQuery({
-    queryKey: ["venue", id],
+    queryKey: ["venues", id],
     queryFn: () => fetchVenueById(id!),
     enabled: !!id,
   });
