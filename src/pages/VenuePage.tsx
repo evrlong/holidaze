@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router";
 import { useVenueById } from "../features/venues/useVenues";
+import { BookingForm } from "../features/bookingsystem/BookingForm";
 
 export function VenuePage() {
   const { id } = useParams();
@@ -20,6 +21,11 @@ export function VenuePage() {
       <Link to="/" className="text-blue-600 underline">
         Tilbake
       </Link>
+      <BookingForm
+        price={venue.price}
+        maxGuests={venue.maxGuests}
+        venueId={venue.id}
+      />
     </main>
   );
 }
