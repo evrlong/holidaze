@@ -4,6 +4,7 @@ import { FaFacebook, FaXTwitter, FaInstagram } from "react-icons/fa6";
 
 export function Layout() {
   const { user, clearUser } = useAuthStore();
+  const isVenueManager = user?.venueManager ?? false;
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -28,6 +29,14 @@ export function Layout() {
               >
                 Profile
               </Link>
+              {isVenueManager && (
+                <Link
+                  to="/create-venue"
+                  className="bg-mint-50 ml-4 rounded-[10px] px-3 py-0.5 text-black shadow-lg"
+                >
+                  List Venue
+                </Link>
+              )}
               <button
                 onClick={clearUser}
                 className="bg-mint-50 ml-4 rounded-[10px] px-3 py-0.5 text-black shadow-lg"

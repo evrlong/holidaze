@@ -11,6 +11,11 @@ export function VenuePage() {
   return (
     <main className="p-8">
       <h1 className="text-3xl font-bold">{venue.name}</h1>
+      <img
+        src={venue.media?.[0].url}
+        alt={venue.name}
+        className="my-4 w-full max-w-md rounded-lg"
+      />
       <p>{venue.description}</p>
       <p>Rating: {venue.rating}</p>
       <p>
@@ -19,7 +24,7 @@ export function VenuePage() {
       <p>Price: {venue.price}</p>
       <p>Capacity: {venue.maxGuests}</p>
       <Link to="/" className="text-blue-600 underline">
-        Tilbake
+        Back to venues
       </Link>
       <BookingForm
         price={venue.price}

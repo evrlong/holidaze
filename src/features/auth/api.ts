@@ -9,7 +9,7 @@ export async function loginUser({
   email: string;
   password: string;
 }): Promise<LoginResponse> {
-  const response = await fetch(`${API_BASE}/auth/login`, {
+  const response = await fetch(`${API_BASE}/auth/login?_holidaze=true`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
