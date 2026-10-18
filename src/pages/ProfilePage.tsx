@@ -1,5 +1,6 @@
 import { useProfile } from "../features/profile/useProfile";
 import { useAuthStore } from "../features/auth/authStore";
+import { MyBookingsUi } from "../features/myBookings/myBookingsUi";
 
 export function ProfilePage() {
   const { user, accessToken } = useAuthStore();
@@ -24,6 +25,7 @@ export function ProfilePage() {
       />
       <p>Name: {profile.name}</p>
       <p>Email: {profile.email}</p>
+      <MyBookingsUi username={name} token={token} />
     </main>
   );
 }
