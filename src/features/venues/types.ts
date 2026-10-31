@@ -13,6 +13,25 @@ export type Venue = {
     url: string;
     alt: string;
   }[];
+  meta?: {
+    wifi: boolean;
+    parking: boolean;
+    breakfast: boolean;
+    pets: boolean;
+  };
+  owner?: {
+    name: string;
+    email: string;
+    bio: string;
+    avatar: {
+      url: string;
+      alt: string;
+    };
+    banner: {
+      url: string;
+      alt: string;
+    };
+  };
 };
 
 export type VenueInput = {

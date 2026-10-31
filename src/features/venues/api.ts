@@ -11,7 +11,7 @@ export async function fetchVenues(): Promise<Venue[]> {
 
 export async function fetchVenueById(id: string): Promise<Venue> {
   const response = await fetch(
-    `${API_BASE}/holidaze/venues/${id}?_bookings=true`,
+    `${API_BASE}/holidaze/venues/${id}?_bookings=true&_owner=true`,
   );
   if (!response.ok) {
     const json = await response.json();

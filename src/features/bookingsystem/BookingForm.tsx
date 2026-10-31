@@ -29,31 +29,54 @@ export function BookingForm({ price, maxGuests, venueId }: BookingFormProps) {
   }
 
   return (
-    <section className="p-8">
-      <DayPicker
-        mode="range"
-        selected={range}
-        onSelect={setRange}
-        disabled={disabledDays}
-        min={1}
-      />
-      <p>From: {range?.from ? range.from.toLocaleDateString() : "..."}</p>
-      <p>To: {range?.to ? range.to.toLocaleDateString() : "..."}</p>
-      <p>Guests: {guests}</p>
-      <p>Night: {nights === 0 ? "..." : nights}</p>
-      <p>Total Price: {totalPrice === 0 ? "..." : totalPrice}</p>
-      <input
-        type="number"
-        value={guests}
-        onChange={(e) => setGuests(parseInt(e.target.value, 10))}
-        min={1}
-        max={maxGuests}
-      />
-      <button onClick={handleBooking} disabled={isPending}>
-        Book Now
-      </button>
-      {error && <p className="text-red-500">Error: {error.message}</p>}
-      {isSuccess && <p className="text-green-500">Booking successful!</p>}
+    <section className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-md">
+      <div className="h-4 bg-mint-700" />
+      <div className="flex flex-col gap-3 p-4">
+        <div className="flex justify-center">
+          <DayPicker
+            mode="range"
+            selected={range}
+            onSelect={setRange}
+            disabled={disabledDays}
+            min={1}
+          />
+        </div>
+        <div className="grid grid-cols-2 gap-3">
+          <div className="rounded-lg border border-gray-300 px-3 py-1.5 text-center text-sm shadow-sm">
+            {range?.from ? range.from.toLocaleDateString() : "Check in"}
+          </div>
+          <div className="rounded-lg border border-gray-300 px-3 py-1.5 text-center text-sm shadow-sm">
+            {range?.to ? range.to.toLocaleDateString() : "Check out"}
+          </div>
+        </div>
+        <input
+          type="number"
+          aria-label="Guests"
+          placeholder="Guests"
+          value={Number.isNaN(guests) ? "" : guests}
+          onChange={(e) => setGuests(parseInt(e.target.value, 10))}
+          min={1}
+          max={maxGuests}
+          className="w-full rounded-lg border border-gray-300 px-3 py-1.5 text-center text-sm shadow-sm"
+        />
+        <div className="mt-2 flex items-baseline justify-between">
+          <span className="text-sm font-semibold">
+            Total cost{nights > 0 && ` (${nights} nights)`}
+          </span>
+          <span className="text-xl font-bold">
+            {totalPrice === 0 ? "..." : `$${totalPrice}`}
+          </span>
+        </div>
+        <button
+          onClick={handleBooking}
+          disabled={isPending}
+          className="w-full rounded-lg bg-mint-700 py-2 font-semibold text-white shadow-md hover:bg-mint-800 disabled:opacity-60"
+        >
+          Reserve
+        </button>
+        {error && <p className="text-red-500">Error: {error.message}</p>}
+        {isSuccess && <p className="text-green-500">Booking successful!</p>}
+      </div>
     </section>
   );
 }
