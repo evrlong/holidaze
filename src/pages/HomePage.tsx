@@ -4,6 +4,7 @@ import { VenueCard } from "../components/venue/VenueCard";
 import { useState } from "react";
 import { SearchBar } from "../features/venues/SearchBar";
 import type { SearchFilters } from "../features/venues/types";
+import { isAvailable } from "../features/venues/availability";
 
 export function HomePage() {
   const { data, isLoading, error } = useVenues();
@@ -12,6 +13,7 @@ export function HomePage() {
     location: "",
     dateFrom: "",
     dateTo: "",
+    guests: "",
   });
 
   const [visibleCount, setVisibleCount] = useState(24);
@@ -21,12 +23,23 @@ export function HomePage() {
 
   const filtered = data.filter((venue) => {
     const city = venue.location?.city?.toLowerCase() ?? "";
-    return city.includes(filters.location.toLowerCase());
+    const matchesCity = city.includes(filters.location.toLowerCase());
+
+    const guests = Number(filters.guests);
+    const matchesGuests = !filters.guests || venue.maxGuests >= guests;
+
+    const matchesAvailability =
+      !filters.dateFrom ||
+      !filters.dateTo ||
+      isAvailable(venue, filters.dateFrom, filters.dateTo);
+    return matchesCity && matchesGuests && matchesAvailability;
   });
 
   return (
     <main className="px-16 py-8">
-      <h1 className="mb-4 text-3xl font-bold">Venues</h1>
+      <h1 className="mb-6 text-center text-lg font-medium">
+        Book your stay now
+      </h1>
       <SearchBar
         venues={data}
         filters={filters}
@@ -35,8 +48,8 @@ export function HomePage() {
           setVisibleCount(24);
         }}
       />
-      <h2 className="mb-4 text-2xl font-bold">
-        showing {filtered.length} venues
+      <h2 className="mt-12 mb-4 text-base font-medium">
+        Showing {filtered.length} venues
       </h2>
 
       <ul className="grid grid-cols-1 gap-8 space-y-2 sm:grid-cols-2 lg:grid-cols-4">

@@ -72,4 +72,5 @@ export type SearchFilters = {
   location: string;
   dateFrom: string;
   dateTo: string;
+  guests: string;
 };

@@ -46,8 +46,8 @@ export function LocationInput({ venues, value, onChange }: LocationInputProps) {
         list="cities"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        placeholder="Hvor vil du reise?"
-        className="rounded border px-3 py-2"
+        placeholder="Where are you going?"
+        className="w-full min-w-0 bg-transparent text-sm outline-none"
       />
       <datalist id="cities">
         {suggestions.map((city) => (
