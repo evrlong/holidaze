@@ -175,7 +175,7 @@ export function EditVenuePage() {
             City
             <input
               name="city"
-              defaultValue={venue.location.city}
+              defaultValue={venue.location.city ?? ""}
               className={inputClass}
             />
           </label>

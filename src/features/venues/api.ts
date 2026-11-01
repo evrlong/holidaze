@@ -2,13 +2,29 @@
 import type { ApiResponse } from "../../lib/types";
 import type { Venue, VenueInput } from "./types";
 
-export async function fetchVenues(): Promise<Venue[]> {
-  const response = await fetch(`${API_BASE}/holidaze/venues`);
-  if (!response.ok) throw new Error("Could not fetch venues");
-  const json: ApiResponse<Venue[]> = await response.json();
-  return json.data;
-}
+const MAX_PAGES = 20;
 
+export async function fetchVenues(): Promise<Venue[]> {
+  const url = (page: number) =>
+    `${API_BASE}/holidaze/venues?_bookings=true&limit=100&page=${page}&sort=created&sortOrder=desc`;
+
+  const fetchPage = async (page: number) => {
+    const response = await fetch(url(page));
+    if (!response.ok) throw new Error("Could not fetch venues");
+    const json: ApiResponse<Venue[]> = await response.json();
+    return json;
+  };
+
+  const first = await fetchPage(1);
+
+  const pageCount = Math.min(first.meta?.pageCount ?? 1, MAX_PAGES);
+
+  const rest = await Promise.all(
+    Array.from({ length: pageCount - 1 }, (_, i) => fetchPage(i + 2)),
+  );
+
+  return [first, ...rest].flatMap((json) => json.data);
+}
 export async function fetchVenueById(id: string): Promise<Venue> {
   const response = await fetch(
     `${API_BASE}/holidaze/venues/${id}?_bookings=true&_owner=true`,

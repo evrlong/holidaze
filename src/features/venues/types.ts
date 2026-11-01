@@ -6,7 +6,7 @@ export type Venue = {
   maxGuests: number;
   rating: number;
   location: {
-    city: string;
+    city: string | null;
     country: string;
   };
   media?: {
@@ -32,6 +32,7 @@ export type Venue = {
       alt: string;
     };
   };
+  bookings?: Booking[];
 };
 
 export type VenueInput = {
@@ -58,4 +59,17 @@ export type VenueInput = {
 export type createVenueResponse = {
   data: Venue;
   errors?: { message: string }[];
+};
+
+export type Booking = {
+  id: string;
+  dateFrom: string;
+  dateTo: string;
+  guests: number;
+};
+
+export type SearchFilters = {
+  location: string;
+  dateFrom: string;
+  dateTo: string;
 };
