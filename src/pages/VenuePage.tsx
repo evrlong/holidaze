@@ -1,7 +1,7 @@
 import { useParams } from "react-router";
 import { useVenueById } from "../features/venues/useVenues";
 import { BookingForm } from "../features/bookingSystem/BookingForm";
-import { FaWifi, FaParking, FaCoffee, FaPaw } from "react-icons/fa";
+import { FaWifi, FaParking, FaCoffee, FaPaw, FaEnvelope } from "react-icons/fa";
 
 export function VenuePage() {
   const { id } = useParams();
@@ -93,30 +93,37 @@ export function VenuePage() {
             maxGuests={venue.maxGuests}
             venueId={venue.id}
           />
+          {venue.owner && (
+            <section className="border-mint-200 mt-10 rounded-xl border bg-gray-100 shadow-lg">
+              <div className="flex flex-col gap-6 p-6">
+                <div className="flex-left flex flex-col flex-row items-center gap-4">
+                  <img
+                    src={venue.owner.avatar?.url}
+                    alt={venue.owner.avatar?.alt || venue.owner.name}
+                    className="h-12 w-12 shrink-0 rounded-full bg-gray-200 object-cover"
+                  />
+                  <div className="mt-2">
+                    <p className="flex flex-col text-gray-600">
+                      Hosted by{" "}
+                      <span className="font-bold">{venue.owner.name}</span>
+                    </p>
+                  </div>
+                </div>
+                <div>
+                  <p className="text-gray-600">{venue.owner.bio}</p>
+                </div>
+                <a
+                  href={`mailto:${venue.owner.email}`}
+                  className="text-mint-700"
+                >
+                  <FaEnvelope className="mr-2 inline" />
+                  Contact host
+                </a>
+              </div>
+            </section>
+          )}
         </aside>
       </div>
-
-      {venue.owner && (
-        <section className="mt-10">
-          <div className="mt-6 flex flex-col items-center gap-6 md:flex-row">
-            <div className="md:text-center">
-              <h2 className="py-4 text-2xl font-bold text-gray-600">
-                About the host
-              </h2>
-              <img
-                src={venue.owner.avatar?.url}
-                alt={venue.owner.avatar?.alt || venue.owner.name}
-                className="h-48 w-48 shrink-0 rounded-full bg-gray-200 object-cover"
-              />
-
-              <p className="py-2 text-center font-bold">{venue.owner.name}</p>
-            </div>
-            <div>
-              <p className="text-gray-600">{venue.owner.bio}</p>
-            </div>
-          </div>
-        </section>
-      )}
     </main>
   );
 }
