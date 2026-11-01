@@ -1,4 +1,4 @@
-import { API_BASE } from "../../lib/constants";
+﻿import { API_BASE, API_KEY } from "../../lib/constants";
 import type { ApiResponse } from "../../lib/types";
 import type { Venue, VenueInput } from "./types";
 
@@ -40,4 +40,42 @@ export async function createVenues(
   }
   const json: ApiResponse<Venue> = await response.json();
   return json.data;
+}
+export async function updateVenue(
+  id: string,
+  input: VenueInput,
+  token: string,
+): Promise<Venue> {
+  const response = await fetch(`${API_BASE}/holidaze/venues/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+      "X-Noroff-API-Key": API_KEY,
+    },
+    body: JSON.stringify(input),
+  });
+
+  if (!response.ok) {
+    const json = await response.json();
+    throw new Error(json.errors?.[0]?.message ?? "Could not update venue");
+  }
+
+  const json: ApiResponse<Venue> = await response.json();
+  return json.data;
+}
+
+export async function deleteVenue(id: string, token: string): Promise<void> {
+  const response = await fetch(`${API_BASE}/holidaze/venues/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "X-Noroff-API-Key": API_KEY,
+    },
+  });
+
+  if (!response.ok) {
+    const json = await response.json();
+    throw new Error(json.errors?.[0]?.message ?? "Could not delete venue");
+  }
 }

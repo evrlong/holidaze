@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router";
+import { useParams } from "react-router";
 import { useVenueById } from "../features/venues/useVenues";
 import { BookingForm } from "../features/bookingSystem/BookingForm";
 import { FaWifi, FaParking, FaCoffee, FaPaw } from "react-icons/fa";

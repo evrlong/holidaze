@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router";
+﻿import { createBrowserRouter, Navigate } from "react-router";
 import { HomePage } from "./pages/HomePage";
 import { VenuePage } from "./pages/VenuePage";
 import { Layout } from "./components/Layout";
@@ -6,6 +6,10 @@ import { LoginPage } from "./pages/LoginPage";
 import { RegisterPage } from "./pages/RegisterPage";
 import { ProfilePage } from "./pages/ProfilePage";
 import { CreateVenuePage } from "./pages/CreateVenuePage";
+import { MyVenuesPage } from "./pages/MyVenuesPage";
+import { MyBookingsPage } from "./pages/MyBookingsPage";
+import { EditVenuePage } from "./pages/EditVenuePage";
+import { EditProfilePage } from "./pages/EditProfilePage";
 
 export const router = createBrowserRouter([
   {
@@ -14,9 +18,25 @@ export const router = createBrowserRouter([
       { path: "/", element: <HomePage /> },
       { path: "/venues/:id", element: <VenuePage /> },
       { path: "/login", element: <LoginPage /> },
-      { path: "/register", element: <RegisterPage /> },
-      { path: "/profile", element: <ProfilePage /> },
-      { path: "/create-venue", element: <CreateVenuePage /> },
+
+      {
+        path: "/profile",
+        element: <ProfilePage />,
+        children: [
+          { index: true, element: <Navigate to="bookings" replace /> },
+          { path: "venues", element: <MyVenuesPage /> },
+          { path: "bookings", element: <MyBookingsPage /> },
+          { path: "register", element: <RegisterPage /> },
+          { path: "venues/new", element: <CreateVenuePage /> },
+        ],
+      },
+      { path: "/profile/edit", element: <EditProfilePage /> },
+      { path: "/profile/venues/:id/edit", element: <EditVenuePage /> },
+
+      {
+        path: "/profile/create-venue",
+        element: <Navigate to="/profile/venues/new" replace />,
+      },
     ],
   },
 ]);

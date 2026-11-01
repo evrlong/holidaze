@@ -1,4 +1,4 @@
-import type { ApiResponse } from "../../lib/types";
+﻿import type { ApiResponse } from "../../lib/types";
 import { API_BASE, API_KEY } from "../../lib/constants";
 import type { MyBooking } from "./types";
 
@@ -11,7 +11,7 @@ export async function getMyBookings(
   }
 
   const response = await fetch(
-    `${API_BASE}/holidaze/profiles/${username}/bookings`,
+    `${API_BASE}/holidaze/profiles/${encodeURIComponent(username)}/bookings?_venue=true`,
     {
       headers: {
         Authorization: `Bearer ${token}`,

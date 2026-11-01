@@ -40,7 +40,7 @@ export function RegisterPage() {
     console.log({ email, name: username, venueManager });
   }
   return (
-    <main className="mx-auto max-w-sm p-8">
+    <main className="mx-auto p-8">
       <h1 className="mb-4 text-3xl font-bold text-neutral-400">
         Create an account
       </h1>

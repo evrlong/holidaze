@@ -1,6 +1,6 @@
 import { API_BASE, API_KEY } from "../../lib/constants";
 import type { ApiResponse } from "../../lib/types";
-import type { Profile } from "./types";
+import type { Profile, ProfileUpdate } from "./types";
 
 export async function getProfile(name: string, token: string) {
   const response = await fetch(`${API_BASE}/holidaze/profiles/${name}`, {
@@ -10,6 +10,28 @@ export async function getProfile(name: string, token: string) {
     },
   });
   if (!response.ok) throw new Error("Failed to fetch profile");
+  const json: ApiResponse<Profile> = await response.json();
+  return json.data;
+}
+
+export async function updateProfile(
+  name: string,
+  token: string,
+  profileData: ProfileUpdate,
+) {
+  const response = await fetch(`${API_BASE}/holidaze/profiles/${name}`, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "X-Noroff-API-Key": API_KEY,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(profileData),
+  });
+  if (!response.ok) {
+    const json = await response.json();
+    throw new Error(json.errors?.[0]?.message ?? "Failed to update profile");
+  }
   const json: ApiResponse<Profile> = await response.json();
   return json.data;
 }
