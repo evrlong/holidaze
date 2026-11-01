@@ -6,6 +6,8 @@ import { SearchBar } from "../features/venues/SearchBar";
 import type { SearchFilters } from "../features/venues/types";
 import { isAvailable } from "../features/venues/availability";
 
+type SortBy = "newest" | "price-asc" | "price-desc" | "rating";
+
 export function HomePage() {
   const { data, isLoading, error } = useVenues();
 
@@ -17,9 +19,11 @@ export function HomePage() {
   });
 
   const [visibleCount, setVisibleCount] = useState(24);
+  const [sort, setSort] = useState<SortBy>("newest");
 
-  if (error) return <p className="p-8">Noe gikk galt: {error.message}</p>;
-  if (isLoading || !data) return <p className="p-8">Laster...</p>;
+  if (error)
+    return <p className="p-8">Something went wrong: {error.message}</p>;
+  if (isLoading || !data) return <p className="p-8">Loading..</p>;
 
   const filtered = data.filter((venue) => {
     const city = venue.location?.city?.toLowerCase() ?? "";
@@ -35,6 +39,13 @@ export function HomePage() {
     return matchesCity && matchesGuests && matchesAvailability;
   });
 
+  const sorted = [...filtered].sort((a, b) => {
+    if (sort === "price-asc") return a.price - b.price;
+    if (sort === "price-desc") return b.price - a.price;
+    if (sort === "rating") return b.rating - a.rating;
+    return 0;
+  });
+
   return (
     <main className="px-16 py-8">
       <h1 className="mb-6 text-center text-lg font-medium">
@@ -48,12 +59,24 @@ export function HomePage() {
           setVisibleCount(24);
         }}
       />
-      <h2 className="mt-12 mb-4 text-base font-medium">
-        Showing {filtered.length} venues
-      </h2>
+      <div className="flex items-center justify-between">
+        <h2 className="mt-12 mb-4 text-base font-medium">
+          Showing {filtered.length} venues
+        </h2>
+        <select
+          className="border-mint-400 rounded-md border px-2 py-1"
+          value={sort}
+          onChange={(e) => setSort(e.target.value as SortBy)}
+        >
+          <option value="newest">Newest</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="rating">Rating</option>
+        </select>
+      </div>
 
       <ul className="grid grid-cols-1 gap-8 space-y-2 sm:grid-cols-2 lg:grid-cols-4">
-        {filtered.slice(0, visibleCount).map((venue) => (
+        {sorted.slice(0, visibleCount).map((venue) => (
           <li key={venue.id}>
             <Link
               to={`/venues/${venue.id}`}
