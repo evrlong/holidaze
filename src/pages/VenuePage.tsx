@@ -6,8 +6,8 @@ import { FaWifi, FaParking, FaCoffee, FaPaw, FaEnvelope } from "react-icons/fa";
 export function VenuePage() {
   const { id } = useParams();
   const { data: venue, isLoading, error } = useVenueById(id);
-  if (isLoading || !venue) return <p className="p-8">Laster...</p>;
-  if (error) return <p className="p-8">Noe gikk galt: {error.message}</p>;
+  if (isLoading || !venue) return <p className="p-8">Loading...</p>;
+  if (error) return <p className="p-8">Something went wrong: {error.message}</p>;
 
   return (
     <main className="mx-auto max-w-5xl p-8">

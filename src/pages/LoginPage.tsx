@@ -41,7 +41,7 @@ export function LoginPage() {
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <label className="block">
-          E-post
+          Email
           <input
             type="email"
             value={email}
@@ -53,7 +53,7 @@ export function LoginPage() {
         </label>
 
         <label className="block">
-          Passord
+          Password
           <input
             type="password"
             value={password}
@@ -75,7 +75,7 @@ export function LoginPage() {
           disabled={mutation.isPending}
           className="bg-mint-900 w-full rounded px-4 py-2 font-bold text-white"
         >
-          {mutation.isPending ? "Logger inn..." : "Logg inn"}
+          {mutation.isPending ? "Signing in..." : "Sign in"}
         </button>
         <p className="text-right text-neutral-300">
           Or create a{" "}

@@ -80,7 +80,7 @@ export function HomePage() {
           <li key={venue.id}>
             <Link
               to={`/venues/${venue.id}`}
-              className="text-blue-600 underline"
+              className="block h-full rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               <VenueCard venue={venue} />
             </Link>
