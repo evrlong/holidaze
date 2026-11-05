@@ -39,12 +39,15 @@ export function RegisterPage() {
     mutation.mutate({ email, name: username, password, venueManager });
     console.log({ email, name: username, venueManager });
   }
+  const inputClass =
+    "w-full rounded border border-gray-300 p-3 text-base sm:p-2";
+
   return (
-    <main className="mx-auto p-8">
-      <h1 className="mb-4 text-3xl font-bold text-neutral-400">
+    <main className="mx-auto w-full max-w-md px-4 py-8 sm:max-w-lg sm:px-8 sm:py-12">
+      <h1 className="mb-2 text-2xl font-bold text-neutral-400 sm:mb-4 sm:text-3xl">
         Create an account
       </h1>
-      <h2 className="mb-4 text-xl text-neutral-300">
+      <h2 className="mb-6 text-base text-neutral-300 sm:text-xl">
         Book unique stays or manage your own venues — all in one place
       </h2>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4" noValidate>
@@ -52,9 +55,10 @@ export function RegisterPage() {
           <input
             type="text"
             placeholder="Username"
+            autoComplete="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            className="w-full rounded border border-gray-300 p-2"
+            className={inputClass}
             required
           />
           <FieldFeedback value={username} error={errors.username} />
@@ -63,52 +67,56 @@ export function RegisterPage() {
           <input
             type="email"
             placeholder="Email"
+            autoComplete="email"
+            inputMode="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full rounded border border-gray-300 p-2"
+            className={inputClass}
             required
           />
           <FieldFeedback value={email} error={errors.email} />
         </div>
 
-        <div>
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full rounded border border-gray-300 p-2"
-            required
-          />
-          <FieldFeedback value={password} error={errors.password} />
-        </div>
-        <div>
-          <input
-            type="password"
-            placeholder="Confirm Password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            className="w-full rounded border border-gray-300 p-2"
-            required
-          />
-          <FieldFeedback
-            value={confirmPassword}
-            error={errors.confirmPassword}
-          />
-        </div>
-        <div>
-          <label>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div>
             <input
-              type="checkbox"
-              checked={venueManager}
-              onChange={(e) => setVenueManager(e.target.checked)}
-              className="accent-mint-600 mr-2"
+              type="password"
+              placeholder="Password"
+              autoComplete="new-password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className={inputClass}
+              required
             />
-            I also want to host on Holidaze
-          </label>
+            <FieldFeedback value={password} error={errors.password} />
+          </div>
+          <div>
+            <input
+              type="password"
+              placeholder="Confirm Password"
+              autoComplete="new-password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              className={inputClass}
+              required
+            />
+            <FieldFeedback
+              value={confirmPassword}
+              error={errors.confirmPassword}
+            />
+          </div>
         </div>
+        <label className="flex cursor-pointer items-center gap-3 py-1">
+          <input
+            type="checkbox"
+            checked={venueManager}
+            onChange={(e) => setVenueManager(e.target.checked)}
+            className="accent-mint-600 h-5 w-5 shrink-0"
+          />
+          <span>I also want to host on Holidaze</span>
+        </label>
         <button
-          className="bg-mint-900 w-full rounded px-4 py-2 font-bold text-white"
+          className="bg-mint-900 w-full rounded px-4 py-3 font-bold text-white disabled:cursor-not-allowed disabled:opacity-60 sm:py-2"
           type="submit"
           disabled={mutation.isPending || hasErrors}
         >
@@ -117,6 +125,12 @@ export function RegisterPage() {
         {mutation.error && (
           <p className="text-error-600">{mutation.error.message}</p>
         )}
+        <p className="text-center text-neutral-300 sm:text-right">
+          Already have an account?{" "}
+          <a href="/login" className="text-mint-700 font-bold">
+            Sign in
+          </a>
+        </p>
       </form>
     </main>
   );
