@@ -11,7 +11,7 @@ export async function fetchMyVenues(
   }
 
   const response = await fetch(
-    `${API_BASE}/holidaze/profiles/${encodeURIComponent(username)}/venues`,
+    `${API_BASE}/holidaze/profiles/${encodeURIComponent(username)}/venues?_bookings=true`,
     {
       headers: {
         Authorization: `Bearer ${token}`,

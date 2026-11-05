@@ -48,8 +48,7 @@ export function VenueCard({ venue, compact = false }: VenueCardProps) {
           <span
             className={`bg-mint-600 rounded-lg font-medium text-white ${compact ? "px-2 py-1 text-xs" : "px-3 py-1.5 text-sm"}`}
           >
-            <span className="sr-only">Max guests: </span>
-            {venue.maxGuests}
+            <span>Max guests: {venue.maxGuests}</span>
           </span>
         </div>
       </div>

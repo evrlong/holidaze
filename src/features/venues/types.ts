@@ -32,7 +32,7 @@ export type Venue = {
       alt: string;
     };
   };
-  bookings?: Booking[];
+  bookings?: VenueBooking[];
 };
 
 export type VenueInput = {
@@ -73,4 +73,17 @@ export type SearchFilters = {
   dateFrom: string;
   dateTo: string;
   guests: string;
+};
+
+export type VenueBooking = {
+  id: string;
+  dateFrom: string;
+  dateTo: string;
+  guests: number;
+  created: string;
+  customer: {
+    name: string;
+    email: string;
+    avatar?: { url: string; alt: string };
+  };
 };
