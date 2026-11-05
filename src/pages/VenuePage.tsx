@@ -7,7 +7,8 @@ export function VenuePage() {
   const { id } = useParams();
   const { data: venue, isLoading, error } = useVenueById(id);
   if (isLoading || !venue) return <p className="p-8">Loading...</p>;
-  if (error) return <p className="p-8">Something went wrong: {error.message}</p>;
+  if (error)
+    return <p className="p-8">Something went wrong: {error.message}</p>;
 
   return (
     <main className="mx-auto max-w-5xl p-8">
@@ -92,6 +93,7 @@ export function VenuePage() {
             price={venue.price}
             maxGuests={venue.maxGuests}
             venueId={venue.id}
+            bookings={venue.bookings ?? []}
           />
           {venue.owner && (
             <section className="border-mint-200 mt-10 rounded-xl border bg-gray-100 shadow-lg">

@@ -11,6 +11,7 @@ export interface BookingFormProps {
   price: number;
   maxGuests: number;
   venueId: string;
+  bookings: BookedDates[];
 }
 
 export interface createBookingBody {
@@ -19,3 +20,5 @@ export interface createBookingBody {
   guests: number;
   venueId: string;
 }
+
+export type BookedDates = Pick<Booking, "dateFrom" | "dateTo">;
