@@ -1,6 +1,12 @@
-import { Link, Outlet } from "react-router";
+import { Link, NavLink, Outlet } from "react-router";
+import { BurgerMeny } from "./BurgerMeny";
 import { useAuthStore } from "../features/auth/authStore";
 import { FaFacebook, FaXTwitter, FaInstagram } from "react-icons/fa6";
+
+const navBase =
+  "border-b-2 pb-1 font-medium text-mint-50 transition-colors hover:border-korall-500";
+const navClass = ({ isActive }: { isActive: boolean }) =>
+  `${navBase} ${isActive ? "border-korall-500" : "border-transparent"}`;
 
 export function Layout() {
   const { user, clearUser } = useAuthStore();
@@ -8,44 +14,39 @@ export function Layout() {
   return (
     <div className="flex min-h-screen flex-col">
       <header className="bg-mint-800 relative z-10 flex items-center justify-between p-8 shadow-lg">
-        <Link to="/" className="text-mint-50 text-3xl font-bold">
-          Holidaze
+        <Link
+          to="/"
+          className="text-mint-50 hover:text-korall-400 text-xl transition-[color,font-weight] duration-300 ease-out hover:font-bold md:text-3xl"
+        >
+          Holi
+          <span className="text-korall-500 font-bold">daze</span>
         </Link>
-        <div className="flex items-center">
-          <Link
-            to="/"
-            className="bg-mint-50 ml-4 rounded-[10px] px-3 py-0.5 text-black shadow-lg"
-          >
+        <BurgerMeny />
+        <nav className="hidden items-center gap-6 md:flex">
+          <NavLink to="/" end className={navClass}>
             Browse
-          </Link>
+          </NavLink>
 
           {user ? (
             <>
-              <Link
-                to="/profile"
-                className="bg-mint-50 ml-4 rounded-[10px] px-3 py-0.5 text-black shadow-lg"
-              >
+              <NavLink to="/profile" className={navClass}>
                 Profile
-              </Link>
+              </NavLink>
 
               <button
+                type="button"
                 onClick={clearUser}
-                className="bg-mint-50 ml-4 rounded-[10px] px-3 py-0.5 text-black shadow-lg"
+                className={`${navBase} cursor-pointer border-transparent`}
               >
                 Log out
               </button>
             </>
           ) : (
-            <>
-              <Link
-                to="/login"
-                className="bg-mint-50 ml-4 rounded-[10px] px-3 py-0.5 text-black shadow-lg"
-              >
-                Log in
-              </Link>
-            </>
+            <NavLink to="/login" className={navClass}>
+              Log in
+            </NavLink>
           )}
-        </div>
+        </nav>
       </header>
 
       <div className="flex-1">
@@ -53,7 +54,7 @@ export function Layout() {
       </div>
 
       <footer className="bg-mint-800 border-t text-center text-white">
-        <div className="footer-links flex justify-around p-4">
+        <div className="footer-links flex flex-col justify-around gap-8 p-4 pt-12 md:flex-row md:pt-6">
           <div className="flex flex-col space-y-2">
             <Link to="/">Venues</Link>
             <Link to="/profile">Profile</Link>
@@ -65,7 +66,7 @@ export function Layout() {
             <Link to="/about">Terms & Privacy</Link>
           </div>
 
-          <div className="flex items-center justify-center gap-8">
+          <div className="flex items-center justify-center gap-4 py-4 md:gap-8 md:py-0">
             <a href="https://facebook.com" aria-label="Facebook">
               <FaFacebook className="size-8" />
             </a>
