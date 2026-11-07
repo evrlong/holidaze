@@ -4,6 +4,7 @@ import type { VenueInput } from "../types";
 import { useCreateVenue } from "../hooks/useCreateVenue";
 import { useAuthStore } from "../../auth/authStore";
 import { FaWifi, FaParking, FaCoffee, FaPaw } from "react-icons/fa";
+import { useToast } from "../../../context/ToastContext";
 
 const amenities = [
   { name: "wifi", label: "Wifi", icon: FaWifi },
@@ -20,6 +21,7 @@ export function CreateVenueForm() {
   const navigate = useNavigate();
   const token = useAuthStore((state) => state.accessToken);
   const { mutate, isPending, error } = useCreateVenue(token);
+  const { showToast } = useToast();
 
   function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -48,7 +50,10 @@ export function CreateVenueForm() {
     };
 
     mutate(input, {
-      onSuccess: (venue) => navigate(`/venues/${venue.id}`),
+      onSuccess: (venue) => {
+        showToast("Venue created successfully", "success");
+        navigate(`/venues/${venue.id}`);
+      },
     });
   }
 

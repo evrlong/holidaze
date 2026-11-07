@@ -1,4 +1,5 @@
 import { useState, type SubmitEvent } from "react";
+import { useToast } from "../context/ToastContext";
 import { useNavigate } from "react-router";
 import { useMutation } from "@tanstack/react-query";
 import { registerUser } from "../features/auth/api";
@@ -17,6 +18,7 @@ export function RegisterPage() {
   const [password, setPassword] = useState("");
   const [venueManager, setVenueManager] = useState(false);
   const navigate = useNavigate();
+  const { showToast } = useToast();
 
   const errors = {
     username: validateName(username),
@@ -29,6 +31,7 @@ export function RegisterPage() {
   const mutation = useMutation({
     mutationFn: registerUser,
     onSuccess: () => {
+      showToast("Account created successfully", "success");
       navigate("/login");
     },
   });

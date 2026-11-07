@@ -4,6 +4,7 @@ import { useAuthStore } from "../features/auth/authStore";
 import { useProfile } from "../features/profile/useProfile";
 import { useUpdateProfile } from "../features/profile/useUpdateProfile";
 import type { ProfileUpdate } from "../features/profile/types";
+import { useToast } from "../context/ToastContext";
 
 const inputClass =
   "w-full rounded border border-gray-300 p-2 text-base text-black";
@@ -16,6 +17,7 @@ export function EditProfilePage() {
   const token = accessToken ?? "";
   const { data: profile, isLoading, error } = useProfile(name, token);
   const update = useUpdateProfile(name, token);
+  const { showToast } = useToast();
 
   if (!user) return <p className="p-8">You must be logged in.</p>;
   if (isLoading) return <p className="p-8">Loading profile...</p>;
@@ -40,7 +42,12 @@ export function EditProfilePage() {
     if (avatarUrl) input.avatar = { url: avatarUrl, alt: `${name} avatar` };
     if (bannerUrl) input.banner = { url: bannerUrl, alt: `${name} banner` };
 
-    update.mutate(input, { onSuccess: () => navigate("/profile") });
+    update.mutate(input, {
+      onSuccess: () => {
+        showToast("Profile updated successfully", "success");
+        navigate("/profile");
+      },
+    });
   }
 
   return (

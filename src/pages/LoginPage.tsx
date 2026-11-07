@@ -5,12 +5,14 @@ import { loginUser } from "../features/auth/api";
 import { useAuthStore } from "../features/auth/authStore";
 import FieldFeedback from "../components/ui/FieldFeedback";
 import { validateEmail } from "../utils/validation";
+import { useToast } from "../context/ToastContext";
 
 export function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const login = useAuthStore((state) => state.setUser);
   const navigate = useNavigate();
+  const { showToast } = useToast();
 
   const errors = {
     email: validateEmail(email),
@@ -28,6 +30,7 @@ export function LoginPage() {
   function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
     mutation.mutate({ email, password });
+    showToast("Logged in successfully", "success");
   }
 
   return (
