@@ -84,12 +84,12 @@ export function BurgerMeny() {
                 <FaUser className={iconClass} />
                 Profile
               </NavLink>
-              <NavLink to="/bookings" onClick={close} className={itemClass}>
-                <FaCalendar className={iconClass} />
-                My Bookings
-              </NavLink>{" "}
               {user.venueManager && (
-                <NavLink to="/venues" onClick={close} className={itemClass}>
+                <NavLink
+                  to="/profile/venues"
+                  onClick={close}
+                  className={itemClass}
+                >
                   <FaHouse className={iconClass} />
                   My Venues
                 </NavLink>
