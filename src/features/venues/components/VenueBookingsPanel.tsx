@@ -1,5 +1,5 @@
 import { differenceInCalendarDays, format } from "date-fns";
-import type { Venue } from "./types";
+import type { Venue } from "../types";
 import { FaEnvelope } from "react-icons/fa";
 
 export function VenueBookingsPanel({ venue }: { venue: Venue }) {

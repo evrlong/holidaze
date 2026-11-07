@@ -1,9 +1,9 @@
 ﻿import { useState } from "react";
 import { Link } from "react-router";
 import { useAuthStore } from "../features/auth/authStore";
-import { useMyVenues } from "../features/venues/useMyVenues";
-import { MyVenueCard } from "../components/venue/MyVenueCard";
-import { VenueBookingsPanel } from "../features/venues/VenueBookingsPanel";
+import { useMyVenues } from "../features/venues/hooks/useMyVenues";
+import { MyVenueCard } from "../features/venues/components/MyVenueCard";
+import { VenueBookingsPanel } from "../features/venues/components/VenueBookingsPanel";
 
 export function MyVenuesPage() {
   const { user, accessToken } = useAuthStore();

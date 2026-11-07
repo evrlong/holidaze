@@ -1,11 +1,11 @@
 ﻿import type { SubmitEvent } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 import { useAuthStore } from "../features/auth/authStore";
-import { useVenueById } from "../features/venues/useVenues";
+import { useVenueById } from "../features/venues/hooks/useVenues";
 import {
   useUpdateVenue,
   useDeleteVenue,
-} from "../features/venues/useUpdateVenue";
+} from "../features/venues/hooks/useUpdateVenue";
 
 import type { VenueInput } from "../features/venues/types";
 

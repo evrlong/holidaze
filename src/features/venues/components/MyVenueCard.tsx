@@ -1,4 +1,4 @@
-import type { Venue } from "../../features/venues/types";
+import type { Venue } from "../types";
 
 type MyVenueCardProps = {
   venue: Venue;

@@ -8,7 +8,7 @@ import {
   validatePassword,
   validateConfirmPassword,
 } from "../utils/validation";
-import { FieldFeedback } from "../components/FieldFeedback";
+import { FieldFeedback } from "../components/ui/FieldFeedback";
 
 export function RegisterPage() {
   const [email, setEmail] = useState("");

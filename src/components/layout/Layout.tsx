@@ -1,6 +1,6 @@
 import { Link, NavLink, Outlet } from "react-router";
 import { BurgerMeny } from "./BurgerMeny";
-import { useAuthStore } from "../features/auth/authStore";
+import { useAuthStore } from "../../features/auth/authStore";
 import { FaFacebook, FaXTwitter, FaInstagram } from "react-icons/fa6";
 
 const navBase =

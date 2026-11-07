@@ -1,5 +1,5 @@
 import { NavLink } from "react-router";
-import { useAuthStore } from "../features/auth/authStore";
+import { useAuthStore } from "../../features/auth/authStore";
 import {
   FaUser,
   FaMagnifyingGlass,

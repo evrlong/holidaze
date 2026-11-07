@@ -1,6 +1,6 @@
 import { useParams } from "react-router";
-import { useVenueById } from "../features/venues/useVenues";
-import { VenueBookingsPanel } from "../features/venues/VenueBookingsPanel";
+import { useVenueById } from "../features/venues/hooks/useVenues";
+import { VenueBookingsPanel } from "../features/venues/components/VenueBookingsPanel";
 
 export function VenueBookingsPage() {
   const { id } = useParams();

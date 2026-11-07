@@ -1,7 +1,7 @@
 ﻿import { createBrowserRouter, Navigate } from "react-router";
 import { HomePage } from "./pages/HomePage";
 import { VenuePage } from "./pages/VenuePage";
-import { Layout } from "./components/Layout";
+import { Layout } from "./components/layout/Layout";
 import { LoginPage } from "./pages/LoginPage";
 import { RegisterPage } from "./pages/RegisterPage";
 import { ProfilePage } from "./pages/ProfilePage";

@@ -1,6 +1,6 @@
 ﻿import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { updateVenue, deleteVenue } from "./api";
-import type { VenueInput } from "./types";
+import { updateVenue, deleteVenue } from "../api";
+import type { VenueInput } from "../types";
 
 export function useUpdateVenue(token: string | null, username: string) {
   const queryClient = useQueryClient();

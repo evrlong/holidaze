@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import type { SearchFilters, Venue } from "./types";
+import type { SearchFilters, Venue } from "../types";
 import { LocationInput } from "./LocationInput";
 import { FaMapMarkerAlt, FaRegCalendarAlt, FaRegUser } from "react-icons/fa";
 

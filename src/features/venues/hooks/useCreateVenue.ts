@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createVenues } from "./api";
-import type { VenueInput } from "./types";
+import { createVenues } from "../api";
+import type { VenueInput } from "../types";
 
 export function useCreateVenue(token: string | null) {
   const queryClient = useQueryClient();

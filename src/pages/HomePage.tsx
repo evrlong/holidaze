@@ -1,8 +1,8 @@
 import { Link } from "react-router";
-import { useVenues } from "../features/venues/useVenues";
-import { VenueCard } from "../components/venue/VenueCard";
+import { useVenues } from "../features/venues/hooks/useVenues";
+import { VenueCard } from "../features/venues/components/VenueCard";
 import { useState } from "react";
-import { SearchBar } from "../features/venues/SearchBar";
+import { SearchBar } from "../features/venues/components/SearchBar";
 import type { SearchFilters } from "../features/venues/types";
 import { isAvailable } from "../features/venues/availability";
 

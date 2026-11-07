@@ -9,7 +9,7 @@ import {
   FaPaw,
   FaRegImage,
 } from "react-icons/fa";
-import type { Venue } from "../../features/venues/types";
+import type { Venue } from "../types";
 
 type VenueCardProps = {
   venue: Venue;

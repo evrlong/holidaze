@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import { useMutation } from "@tanstack/react-query";
 import { loginUser } from "../features/auth/api";
 import { useAuthStore } from "../features/auth/authStore";
-import FieldFeedback from "../components/FieldFeedback";
+import FieldFeedback from "../components/ui/FieldFeedback";
 import { validateEmail } from "../utils/validation";
 
 export function LoginPage() {

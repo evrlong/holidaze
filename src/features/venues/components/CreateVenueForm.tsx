@@ -1,8 +1,8 @@
 import type { SubmitEvent } from "react";
 import { useNavigate } from "react-router";
-import type { VenueInput } from "./types";
-import { useCreateVenue } from "./useCreateVenue";
-import { useAuthStore } from "../auth/authStore";
+import type { VenueInput } from "../types";
+import { useCreateVenue } from "../hooks/useCreateVenue";
+import { useAuthStore } from "../../auth/authStore";
 import { FaWifi, FaParking, FaCoffee, FaPaw } from "react-icons/fa";
 
 const amenities = [
