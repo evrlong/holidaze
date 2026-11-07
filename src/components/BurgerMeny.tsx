@@ -5,7 +5,6 @@ import {
   FaMagnifyingGlass,
   FaRightToBracket,
   FaRightFromBracket,
-  FaCalendar,
   FaHouse,
 } from "react-icons/fa6";
 import { useEffect, useState } from "react";
