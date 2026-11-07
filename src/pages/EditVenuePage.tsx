@@ -6,6 +6,7 @@ import {
   useUpdateVenue,
   useDeleteVenue,
 } from "../features/venues/hooks/useUpdateVenue";
+import { useToast } from "../context/ToastContext";
 
 import type { VenueInput } from "../features/venues/types";
 
@@ -21,6 +22,7 @@ export function EditVenuePage() {
   const { data: venue, isLoading, error } = useVenueById(id);
   const update = useUpdateVenue(token || null, user?.name ?? "");
   const remove = useDeleteVenue(token || null, user?.name ?? "");
+  const { showToast } = useToast();
 
   if (!user || !user.venueManager)
     return <p className="p-8">Only venue managers can edit venues.</p>;
@@ -58,7 +60,12 @@ export function EditVenuePage() {
     };
     update.mutate(
       { id: venueId, input },
-      { onSuccess: () => navigate("/profile/venues") },
+      {
+        onSuccess: () => {
+          showToast("Venue updated successfully", "success");
+          navigate("/profile/venues");
+        },
+      },
     );
   }
 
@@ -66,7 +73,12 @@ export function EditVenuePage() {
     if (!window.confirm("Are you sure you want to delete this venue?")) return;
     remove.mutate(
       { id: venueId },
-      { onSuccess: () => navigate("/profile/venues") },
+      {
+        onSuccess: () => {
+          showToast("Venue deleted successfully", "success");
+          navigate("/profile/venues");
+        },
+      },
     );
   }
 
