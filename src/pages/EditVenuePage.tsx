@@ -225,7 +225,7 @@ export function EditVenuePage() {
       <ConfirmDialog
         isOpen={showConfirm}
         title="Delete venue"
-        message="test"
+        message="Are you sure you want to delete this venue? This action cannot be undone."
         confirmText="Delete"
         onConfirm={handleDelete}
         onCancel={() => setShowConfirm(false)}
