@@ -56,14 +56,14 @@ export function Layout() {
       <footer className="bg-mint-800 border-t text-center text-white">
         <div className="footer-links flex flex-col justify-around gap-8 p-4 pt-12 md:flex-row md:pt-6">
           <div className="flex flex-col space-y-2">
-            <Link to="/">Venues</Link>
+            <Link to="/">Browse</Link>
             <Link to="/profile">Profile</Link>
             <Link to="/login">Log in</Link>
           </div>
           <div className="flex flex-col space-y-2">
             <Link to="/faq">FAQ</Link>
             <Link to="/contact">Contact</Link>
-            <Link to="/about">Terms & Privacy</Link>
+            <Link to="/terms">Terms & Privacy</Link>
           </div>
 
           <div className="flex items-center justify-center gap-4 py-4 md:gap-8 md:py-0">

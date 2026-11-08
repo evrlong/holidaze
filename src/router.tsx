@@ -10,6 +10,9 @@ import { MyVenuesPage } from "./pages/MyVenuesPage";
 import { MyBookingsPage } from "./pages/MyBookingsPage";
 import { EditVenuePage } from "./pages/EditVenuePage";
 import { EditProfilePage } from "./pages/EditProfilePage";
+import { FaqPage } from "./pages/FaqPage";
+import { ContactPage } from "./pages/ContactPage";
+import { TermsPage } from "./pages/TermsPage";
 
 export const router = createBrowserRouter([
   {
@@ -19,6 +22,9 @@ export const router = createBrowserRouter([
       { path: "/venues/:id", element: <VenuePage /> },
       { path: "/login", element: <LoginPage /> },
       { path: "/register", element: <RegisterPage /> },
+      { path: "/faq", element: <FaqPage /> },
+      { path: "/contact", element: <ContactPage /> },
+      { path: "/terms", element: <TermsPage /> },
       {
         path: "/profile",
         element: <ProfilePage />,
