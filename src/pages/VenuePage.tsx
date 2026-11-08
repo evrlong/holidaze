@@ -1,4 +1,5 @@
 import { useParams } from "react-router";
+import { useState } from "react";
 import { useVenueById } from "../features/venues/hooks/useVenues";
 import { BookingForm } from "../features/bookingSystem/BookingForm";
 import { FaWifi, FaParking, FaCoffee, FaPaw, FaEnvelope } from "react-icons/fa";
@@ -6,19 +7,22 @@ import { FaWifi, FaParking, FaCoffee, FaPaw, FaEnvelope } from "react-icons/fa";
 export function VenuePage() {
   const { id } = useParams();
   const { data: venue, isLoading, error } = useVenueById(id);
+
+  const [imageFailed, setImageFailed] = useState(false);
+  const image = venue?.media?.[0];
+  const showImage = Boolean(image?.url) && !imageFailed;
   if (isLoading || !venue) return <p className="p-8">Loading...</p>;
   if (error)
     return <p className="p-8">Something went wrong: {error.message}</p>;
 
   return (
     <main className="mx-auto max-w-5xl p-8">
-      {venue.media?.[0] && (
-        <img
-          src={venue.media[0].url}
-          alt={venue.media[0].alt || venue.name}
-          className="my-4 h-72 w-full rounded-lg object-cover"
-        />
-      )}
+      <img
+        src={showImage ? image!.url : "/placeholder.svg"}
+        alt={showImage ? image!.alt || venue.name : "No image available"}
+        onError={() => setImageFailed(true)}
+        className="my-4 h-72 w-full rounded-lg bg-gray-200 object-cover"
+      />
 
       <div className="grid gap-8 md:grid-cols-[1fr_20rem]">
         <div>

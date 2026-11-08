@@ -7,7 +7,6 @@ import {
   FaParking,
   FaCoffee,
   FaPaw,
-  FaRegImage,
 } from "react-icons/fa";
 import type { Venue } from "../types";
 
@@ -39,20 +38,13 @@ export function VenueCard({ venue, compact = false }: VenueCardProps) {
       <div
         className={`overflow-hidden bg-gray-100 ${compact ? "aspect-[2.4/1]" : "aspect-[3/2]"}`}
       >
-        {showImage ? (
-          <img
-            src={image.url}
-            alt={imageAlt}
-            loading="lazy"
-            onError={() => setImageFailed(true)}
-            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-115 hover:border hover:opacity-90"
-          />
-        ) : (
-          <div className="flex h-full w-full items-center justify-center text-gray-400">
-            <FaRegImage className="text-mint-400 h-8 w-8" aria-hidden="true" />
-            <span className="sr-only">No image available</span>
-          </div>
-        )}
+        <img
+          src={showImage ? image.url : "/placeholder.svg"}
+          alt={showImage ? imageAlt : "No image available"}
+          loading="lazy"
+          onError={() => setImageFailed(true)}
+          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-115 hover:border hover:opacity-90"
+        />
       </div>
 
       <div className={`flex flex-1 flex-col ${compact ? "p-2" : "p-4"}`}>
