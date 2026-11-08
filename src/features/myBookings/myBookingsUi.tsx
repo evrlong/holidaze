@@ -65,7 +65,7 @@ export function MyBookingsUi({
           ),
         );
         const totalCost = venue ? nights * venue.price : null;
-        const image = venue?.media?.[0];
+        const image = venue?.media?.[0] ?? null;
         const venueId = venue?.id ?? booking.venueId;
 
         return (
@@ -79,7 +79,7 @@ export function MyBookingsUi({
               className="focus-visible:outline-mint-700 block focus-visible:outline-2 focus-visible:outline-offset-[-2px]"
             >
               <img
-                src={image?.url ?? "/placeholder.jpg"}
+                src={image?.url ?? "/placeholder.svg"}
                 alt={image?.alt || venue?.name || "Booked venue"}
                 loading="lazy"
                 className="aspect-[3/1] w-full object-cover"
