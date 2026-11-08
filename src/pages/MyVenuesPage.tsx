@@ -93,7 +93,7 @@ export function MyVenuesPage() {
               </span>
             </>
           ) : (
-            "Bookings"
+            ""
           )}
         </h2>
         {selectedVenue ? (
