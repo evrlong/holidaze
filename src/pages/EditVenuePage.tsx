@@ -1,5 +1,5 @@
-﻿import type { SubmitEvent } from "react";
-import { Link, useNavigate, useParams } from "react-router";
+﻿import { Link, useNavigate, useParams } from "react-router";
+import { useState, type SubmitEvent } from "react";
 import { useAuthStore } from "../features/auth/authStore";
 import { useVenueById } from "../features/venues/hooks/useVenues";
 import {
@@ -7,8 +7,8 @@ import {
   useDeleteVenue,
 } from "../features/venues/hooks/useUpdateVenue";
 import { useToast } from "../context/ToastContext";
-
 import type { VenueInput } from "../features/venues/types";
+import { ConfirmDialog } from "../components/ui/ConfirmDialog";
 
 const inputClass =
   "w-full rounded border border-gray-300 p-2 text-base text-black";
@@ -23,6 +23,7 @@ export function EditVenuePage() {
   const update = useUpdateVenue(token || null, user?.name ?? "");
   const remove = useDeleteVenue(token || null, user?.name ?? "");
   const { showToast } = useToast();
+  const [showConfirm, setShowConfirm] = useState(false);
 
   if (!user || !user.venueManager)
     return <p className="p-8">Only venue managers can edit venues.</p>;
@@ -70,7 +71,7 @@ export function EditVenuePage() {
   }
 
   function handleDelete() {
-    if (!window.confirm("Are you sure you want to delete this venue?")) return;
+    setShowConfirm(false);
     remove.mutate(
       { id: venueId },
       {
@@ -208,8 +209,8 @@ export function EditVenuePage() {
         <button
           type="button"
           disabled={remove.isPending}
-          onClick={handleDelete}
-          className="w-full rounded-full bg-red-600 px-4 py-2 font-semibold text-white hover:bg-red-700 disabled:opacity-60"
+          onClick={() => setShowConfirm(true)}
+          className="bg-korall-600 hover:bg-korall-800 w-full rounded-full px-4 py-2 font-semibold text-white disabled:opacity-60"
         >
           {remove.isPending ? "Deleting..." : "Delete venue"}
         </button>
@@ -221,6 +222,14 @@ export function EditVenuePage() {
           {update.isPending ? "Saving..." : "Save changes"}
         </button>
       </form>
+      <ConfirmDialog
+        isOpen={showConfirm}
+        title="Delete venue"
+        message="test"
+        confirmText="Delete"
+        onConfirm={handleDelete}
+        onCancel={() => setShowConfirm(false)}
+      />
     </main>
   );
 }

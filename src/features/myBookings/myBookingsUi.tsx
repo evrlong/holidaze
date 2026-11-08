@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { differenceInCalendarDays, format } from "date-fns";
 import { useMyBookings } from "./useMyBookings";
 import { useDeleteBooking } from "./useDeleteBooking";
+import { ConfirmDialog } from "../../components/ui/ConfirmDialog";
 
 export function MyBookingsUi({
   username,
@@ -19,6 +20,8 @@ export function MyBookingsUi({
     error: deleteError,
   } = useDeleteBooking(username, token);
   const [openBookingId, setOpenBookingId] = useState<string | null>(null);
+
+  const [bookingToDelete, setBookingToDelete] = useState<string | null>(null);
 
   if (isLoading) {
     return (
@@ -109,15 +112,7 @@ export function MyBookingsUi({
                   <button
                     type="button"
                     disabled={isPending}
-                    onClick={() => {
-                      if (
-                        window.confirm(
-                          "Are you sure you want to delete this booking?",
-                        )
-                      ) {
-                        removeBooking(booking.id);
-                      }
-                    }}
+                    onClick={() => setBookingToDelete(booking.id)}
                     className="mt-2 w-full rounded-lg border border-red-200 px-3 py-1.5 text-sm font-semibold text-red-700 hover:bg-red-50 disabled:opacity-60"
                   >
                     {isDeleting ? "Deleting..." : "Delete booking"}
@@ -141,6 +136,17 @@ export function MyBookingsUi({
           {deleteError.message}
         </p>
       )}
+      <ConfirmDialog
+        isOpen={bookingToDelete !== null}
+        title="Delete booking"
+        message={`Are you sure you want to delete this booking?`}
+        confirmText="Delete"
+        onConfirm={() => {
+          if (bookingToDelete) removeBooking(bookingToDelete);
+          setBookingToDelete(null);
+        }}
+        onCancel={() => setBookingToDelete(null)}
+      />
     </div>
   );
 }
