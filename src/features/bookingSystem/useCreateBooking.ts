@@ -7,7 +7,7 @@ export function useCreateBooking() {
   return useMutation({
     mutationFn: createBooking,
     onSuccess: (_data, variables) => {
-      queryClient.invalidateQueries({
+      return queryClient.invalidateQueries({
         queryKey: ["venues", variables.venueId],
       });
     },

@@ -4,6 +4,7 @@ import { differenceInDays } from "date-fns";
 import { DayPicker, type DateRange } from "react-day-picker";
 import type { BookingFormProps } from "./types";
 import { getBookedRanges } from "../../utils/getBookedRanges";
+import { useToast } from "../../context/ToastContext";
 
 export function BookingForm({
   price,
@@ -14,7 +15,7 @@ export function BookingForm({
   const [range, setRange] = useState<DateRange | undefined>(undefined);
   const [guests, setGuests] = useState<number>(1);
 
-  const { mutate, isPending, error, isSuccess } = useCreateBooking();
+  const { mutate, isPending } = useCreateBooking();
 
   const bookedRanges = useMemo(() => getBookedRanges(bookings), [bookings]);
 
@@ -25,14 +26,27 @@ export function BookingForm({
   const guestMultiplier = 1 + (guests - 1) * guestRate;
   const totalPrice = nights * price * guestMultiplier;
 
+  const { showToast } = useToast();
+
   function handleBooking() {
-    if (!range?.from || !range?.to) return;
-    mutate({
-      dateFrom: range.from.toISOString(),
-      dateTo: range.to.toISOString(),
-      guests,
-      venueId,
-    });
+    if (isPending || !range?.from || !range?.to) return;
+    mutate(
+      {
+        dateFrom: range.from.toISOString(),
+        dateTo: range.to.toISOString(),
+        guests,
+        venueId,
+      },
+      {
+        onSuccess: () => {
+          setRange(undefined);
+          setGuests(1);
+          showToast("Booking successful!", "success");
+        },
+
+        onError: (error) => showToast(error.message, "error"),
+      },
+    );
   }
 
   return (
@@ -81,13 +95,11 @@ export function BookingForm({
         </div>
         <button
           onClick={handleBooking}
-          disabled={isPending}
-          className="bg-mint-700 hover:bg-mint-800 w-full rounded-lg py-2 font-semibold text-white shadow-md disabled:opacity-60"
+          disabled={isPending || !range?.from || !range?.to}
+          className="bg-mint-700 hover:bg-mint-800 w-full rounded-lg py-2 font-semibold text-white shadow-md disabled:cursor-not-allowed disabled:opacity-60"
         >
-          Reserve
+          {isPending ? "Reserving..." : "Reserve"}
         </button>
-        {error && <p className="text-red-500">Error: {error.message}</p>}
-        {isSuccess && <p className="text-green-500">Booking successful!</p>}
       </div>
     </section>
   );
