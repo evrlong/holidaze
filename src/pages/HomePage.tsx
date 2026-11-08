@@ -5,6 +5,7 @@ import { useState } from "react";
 import { SearchBar } from "../features/venues/components/SearchBar";
 import type { SearchFilters } from "../features/venues/types";
 import { isAvailable } from "../features/venues/availability";
+import {} from "react-icons/fa";
 
 type SortBy = "newest" | "price-asc" | "price-desc" | "rating";
 
@@ -59,12 +60,14 @@ export function HomePage() {
           setVisibleCount(24);
         }}
       />
-      <div className="flex items-center justify-between">
-        <h2 className="mt-12 mb-4 text-base font-medium">
-          Showing {filtered.length} venues
+      <div className="flex items-center justify-between gap-4 py-6">
+        <h2 className="text-s text-base md:text-lg">
+          Showing{" "}
+          <span className="text-mint-800 font-semibold">{filtered.length}</span>{" "}
+          venues
         </h2>
         <select
-          className="border-mint-400 rounded-md border px-2 py-1"
+          className="border-mint-400 w-23 rounded-md border px-2 py-1 md:w-48"
           value={sort}
           onChange={(e) => setSort(e.target.value as SortBy)}
         >
