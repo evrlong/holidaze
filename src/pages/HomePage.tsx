@@ -7,7 +7,7 @@ import type { SearchFilters } from "../features/venues/types";
 import { isAvailable } from "../features/venues/availability";
 import {} from "react-icons/fa";
 
-type SortBy = "newest" | "price-asc" | "price-desc" | "rating";
+type SortBy = "newest" | "price-asc" | "price-desc";
 
 export function HomePage() {
   const { data, isLoading, error } = useVenues();
@@ -43,7 +43,7 @@ export function HomePage() {
   const sorted = [...filtered].sort((a, b) => {
     if (sort === "price-asc") return a.price - b.price;
     if (sort === "price-desc") return b.price - a.price;
-    if (sort === "rating") return b.rating - a.rating;
+
     return 0;
   });
 
@@ -74,7 +74,6 @@ export function HomePage() {
           <option value="newest">Newest</option>
           <option value="price-asc">Price: Low to High</option>
           <option value="price-desc">Price: High to Low</option>
-          <option value="rating">Rating</option>
         </select>
       </div>
 

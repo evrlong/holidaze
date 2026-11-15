@@ -30,11 +30,7 @@ export function VenuePage() {
           <p className="mt-2 underline">
             {venue.location.city}, {venue.location.country}
           </p>
-          <p className="mt-2">
-            <span className="rounded bg-green-500 px-2 py-1 text-white">
-              {venue.rating}
-            </span>
-          </p>
+
           <p className="mt-2">Capacity: {venue.maxGuests} guests</p>
           <p>Price: {venue.price} per night</p>
 

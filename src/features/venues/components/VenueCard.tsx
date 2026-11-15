@@ -1,6 +1,5 @@
 ﻿import { useState } from "react";
 import {
-  FaStar,
   FaMapMarkerAlt,
   FaRegUser,
   FaWifi,
@@ -54,17 +53,6 @@ export function VenueCard({ venue, compact = false }: VenueCardProps) {
           >
             {venue.name}
           </h3>
-          {venue.rating > 0 && (
-            <span
-              className={`flex shrink-0 items-center gap-1 text-gray-700 ${compact ? "text-[10px]" : "text-sm"}`}
-              aria-label={`Rating ${venue.rating} of 5`}
-            >
-              <FaStar className="text-korall-500" aria-hidden="true" />
-              {Number.isInteger(venue.rating)
-                ? venue.rating
-                : venue.rating.toFixed(1)}
-            </span>
-          )}
         </div>
 
         <p
