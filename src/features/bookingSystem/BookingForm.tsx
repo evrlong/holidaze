@@ -52,7 +52,7 @@ export function BookingForm({
   return (
     <section className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-md">
       <div className="bg-mint-700 h-4" />
-      <div className="flex flex-col gap-3 p-4">
+      <div className="@container flex flex-col gap-3 p-4">
         <div className="flex justify-center">
           <DayPicker
             mode="range"
