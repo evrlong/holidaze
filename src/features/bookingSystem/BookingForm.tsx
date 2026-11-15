@@ -90,7 +90,7 @@ export function BookingForm({
             Total cost{nights > 0 && ` (${nights} nights)`}
           </span>
           <span className="text-xl font-bold">
-            {totalPrice === 0 ? "..." : `$${totalPrice}`}
+            {totalPrice === 0 ? "..." : `$${totalPrice.toFixed(2)}`}
           </span>
         </div>
         <button
