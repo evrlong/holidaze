@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import type { SearchFilters, Venue } from "../types";
+import type { SearchFilters } from "../types";
 import { LocationInput } from "./LocationInput";
 import { FaMapMarkerAlt, FaRegCalendarAlt, FaRegUser } from "react-icons/fa";
 
@@ -51,12 +51,11 @@ function DateButton({ label, value, min, onChange }: DateButtonProps) {
 }
 
 type SearchBarProps = {
-  venues: Venue[];
   filters: SearchFilters;
   onChange: (filters: SearchFilters) => void;
 };
 
-export function SearchBar({ venues, filters, onChange }: SearchBarProps) {
+export function SearchBar({ filters, onChange }: SearchBarProps) {
   function update(field: keyof SearchFilters, value: string) {
     onChange({ ...filters, [field]: value });
   }
@@ -66,7 +65,6 @@ export function SearchBar({ venues, filters, onChange }: SearchBarProps) {
       <div className="flex flex-1 items-center gap-3 px-5 py-3">
         <FaMapMarkerAlt aria-hidden="true" className="text-mint-800 shrink-0" />
         <LocationInput
-          venues={venues}
           value={filters.location}
           onChange={(value) => update("location", value)}
         />

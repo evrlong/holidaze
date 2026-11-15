@@ -53,7 +53,6 @@ export function HomePage() {
         Book your stay now
       </h1>
       <SearchBar
-        venues={data}
         filters={filters}
         onChange={(newFilters) => {
           setFilters(newFilters);
