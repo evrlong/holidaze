@@ -1,5 +1,5 @@
+import { useNavigate, Navigate, Link } from "react-router";
 import { useState, type SubmitEvent } from "react";
-import { useNavigate } from "react-router";
 import { useMutation } from "@tanstack/react-query";
 import { loginUser } from "../features/auth/api";
 import { useAuthStore } from "../features/auth/authStore";
@@ -13,6 +13,7 @@ export function LoginPage() {
   const login = useAuthStore((state) => state.setUser);
   const navigate = useNavigate();
   const { showToast } = useToast();
+  const user = useAuthStore((state) => state.user);
 
   const errors = {
     email: validateEmail(email),
@@ -23,6 +24,7 @@ export function LoginPage() {
     onSuccess: (data) => {
       const { accessToken, ...user } = data;
       login(user, accessToken);
+      showToast("Logged in successfully", "success");
       navigate("/");
     },
   });
@@ -30,7 +32,10 @@ export function LoginPage() {
   function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
     mutation.mutate({ email, password });
-    showToast("Logged in successfully", "success");
+  }
+
+  if (user) {
+    return <Navigate to="/" />;
   }
 
   return (
@@ -82,9 +87,9 @@ export function LoginPage() {
         </button>
         <p className="text-right text-neutral-300">
           Or create a{" "}
-          <a href="/register" className="text-mint-700 font-bold">
+          <Link to="/register" className="text-mint-700 font-bold">
             new account
-          </a>
+          </Link>
         </p>
       </form>
     </main>

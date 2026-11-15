@@ -1,4 +1,4 @@
-import { Link, NavLink, Outlet } from "react-router";
+import { Link, NavLink, Outlet, useNavigate } from "react-router";
 import { BurgerMeny } from "./BurgerMeny";
 import { useAuthStore } from "../../features/auth/authStore";
 import { FaFacebook, FaXTwitter, FaInstagram } from "react-icons/fa6";
@@ -9,7 +9,13 @@ const navClass = ({ isActive }: { isActive: boolean }) =>
   `${navBase} ${isActive ? "border-korall-500" : "border-transparent"}`;
 
 export function Layout() {
+  const navigate = useNavigate();
   const { user, clearUser } = useAuthStore();
+
+  function handleLogout() {
+    clearUser();
+    navigate("/");
+  }
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -35,7 +41,7 @@ export function Layout() {
 
               <button
                 type="button"
-                onClick={clearUser}
+                onClick={handleLogout}
                 className={`${navBase} cursor-pointer border-transparent`}
               >
                 Log out
@@ -57,8 +63,20 @@ export function Layout() {
         <div className="footer-links flex flex-col justify-around gap-8 p-4 pt-12 md:flex-row md:pt-6">
           <div className="flex flex-col space-y-2">
             <Link to="/">Browse</Link>
-            <Link to="/profile">Profile</Link>
-            <Link to="/login">Log in</Link>
+            {user ? (
+              <>
+                <Link to="/profile">Profile</Link>
+                <button
+                  type="button"
+                  className="cursor-pointer"
+                  onClick={handleLogout}
+                >
+                  Log out
+                </button>
+              </>
+            ) : (
+              <Link to="/login">Log in</Link>
+            )}
           </div>
           <div className="flex flex-col space-y-2">
             <Link to="/faq">FAQ</Link>
