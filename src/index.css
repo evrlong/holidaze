@@ -62,6 +62,16 @@
   --color-neutral-900: #0c0c0c;
 }
 
+/* Force the site to light mode */
+:root {
+  color-scheme: only light;
+}
+
+body {
+  background-color: white;
+  color: var(--color-neutral-900);
+}
+
 /* Booking form styles */
 .rdp-root {
   --rdp-accent-color: var(--color-mint-700);
