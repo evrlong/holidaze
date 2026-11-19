@@ -40,12 +40,10 @@ export function LoginPage() {
 
   return (
     <main className="mx-auto max-w-sm p-8">
-      <h1 className="mb-4 text-3xl font-bold text-neutral-400">
-        Sign in to your account
-      </h1>
-      <h2 className="mb-4 text-xl text-neutral-300">
+      <h1 className="mb-4 text-neutral-400">Sign in to your account</h1>
+      <p className="mb-4 text-xl text-neutral-300">
         Book unique stays or manage your own venues — all in one place
-      </h2>
+      </p>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <label className="block">

@@ -4,7 +4,7 @@ import { useAuthStore } from "../../features/auth/authStore";
 import { FaFacebook, FaXTwitter, FaInstagram } from "react-icons/fa6";
 
 const navBase =
-  "border-b-2 pb-1 font-medium text-mint-50 transition-colors hover:border-korall-500";
+  "border-b-2 py-1 text-lg font-medium text-mint-50 transition-colors hover:border-korall-500";
 const navClass = ({ isActive }: { isActive: boolean }) =>
   `${navBase} ${isActive ? "border-korall-500" : "border-transparent"}`;
 

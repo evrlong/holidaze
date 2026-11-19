@@ -40,19 +40,16 @@ export function RegisterPage() {
     event.preventDefault();
     if (hasErrors) return;
     mutation.mutate({ email, name: username, password, venueManager });
-    console.log({ email, name: username, venueManager });
   }
   const inputClass =
     "w-full rounded border border-gray-300 p-3 text-base sm:p-2";
 
   return (
     <main className="mx-auto w-full max-w-md px-4 py-8 sm:max-w-lg sm:px-8 sm:py-12">
-      <h1 className="mb-2 text-2xl font-bold text-neutral-400 sm:mb-4 sm:text-3xl">
-        Create an account
-      </h1>
-      <h2 className="mb-6 text-base text-neutral-300 sm:text-xl">
+      <h1 className="mb-2 text-neutral-400 sm:mb-4">Create an account</h1>
+      <p className="mb-6 text-base text-neutral-300 sm:text-xl">
         Book unique stays or manage your own venues — all in one place
-      </h2>
+      </p>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4" noValidate>
         <div>
           <input

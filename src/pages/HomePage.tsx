@@ -49,7 +49,7 @@ export function HomePage() {
 
   return (
     <main className="px-16 py-8">
-      <h1 className="mb-6 text-center text-lg font-medium">
+      <h1 className="mb-6 text-center text-lg font-medium text-neutral-400">
         Book your stay now
       </h1>
       <SearchBar
@@ -60,11 +60,11 @@ export function HomePage() {
         }}
       />
       <div className="flex items-center justify-between gap-4 py-6">
-        <h2 className="text-s text-base md:text-lg">
+        <p className="text-base md:text-lg">
           Showing{" "}
           <span className="text-mint-800 font-semibold">{filtered.length}</span>{" "}
           venues
-        </h2>
+        </p>
         <select
           className="border-mint-400 w-23 rounded-md border px-2 py-1 md:w-48"
           value={sort}
