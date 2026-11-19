@@ -158,7 +158,7 @@ src/
 ### Known limitations
 
 - Ratings are not shown, because the project has no rating system.
-- Location autocomplete was removed because it froze on several devices, ans contained too many test locations.
+- Location autocomplete was removed because it froze on several devices, and contained too many test locations.
 
 ## Deployment
 
