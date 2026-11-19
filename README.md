@@ -174,7 +174,7 @@ The site is deployed on Netlify:
 ## Links
 
 
-- Figma design: 
+- [Figma design](https://www.figma.com/design/Z1qtHNbFThFPx3mRwngS9r/Holidaze?node-id=1-265)
 - Kanban board:
 - Style guide:
 
