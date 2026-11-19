@@ -37,7 +37,7 @@ export function ProfilePage() {
               <FaCrown className="inline align-[-0.125em] text-yellow-500" />
             )}
           </p>
-          <h1 className="mt-1 text-2xl font-bold">Hello, {profile.name}</h1>
+          <h1 className="mt-1 text-2xl">Hello, {profile.name}</h1>
           <p className="mt-1 text-sm break-words text-gray-500">
             {profile.email}
           </p>
@@ -80,7 +80,7 @@ export function ProfilePage() {
         </nav>
 
         <section className="mt-8">
-          <h2 className="font-semibold">About me</h2>
+          <h2 className="text-xl font-medium">About me</h2>
           <p className="mt-2 text-sm text-gray-600">
             {profile.bio || "No info provided yet."}
           </p>

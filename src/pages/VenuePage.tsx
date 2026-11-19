@@ -2,7 +2,14 @@ import { useParams } from "react-router";
 import { useState } from "react";
 import { useVenueById } from "../features/venues/hooks/useVenues";
 import { BookingForm } from "../features/bookingSystem/BookingForm";
-import { FaWifi, FaParking, FaCoffee, FaPaw, FaEnvelope } from "react-icons/fa";
+import {
+  FaWifi,
+  FaParking,
+  FaCoffee,
+  FaPaw,
+  FaEnvelope,
+  FaMapMarkerAlt,
+} from "react-icons/fa";
 
 export function VenuePage() {
   const { id } = useParams();
@@ -26,8 +33,12 @@ export function VenuePage() {
 
       <div className="grid gap-8 md:grid-cols-[1fr_20rem]">
         <div>
-          <h1 className="text-3xl font-bold">{venue.name}</h1>
-          <p className="mt-2 underline">
+          <h1>{venue.name}</h1>
+          <p className="mt-2 flex items-center gap-1 text-gray-600">
+            <FaMapMarkerAlt
+              className="text-mint-700 shrink-0"
+              aria-hidden="true"
+            />
             {venue.location.city}, {venue.location.country}
           </p>
 
@@ -36,7 +47,7 @@ export function VenuePage() {
 
           {venue.meta && (
             <section className="mt-6">
-              <h2 className="text-xl font-bold">Facilities</h2>
+              <h2 className="text-xl">Facilities</h2>
               <ul className="mt-2 grid grid-cols-2 gap-1">
                 <li className={venue.meta.wifi ? "" : "text-gray-400"}>
                   {venue.meta.wifi ? (
@@ -83,7 +94,7 @@ export function VenuePage() {
           )}
 
           <section className="mt-6">
-            <h2 className="text-xl font-bold">About the venue</h2>
+            <h2 className="text-xl">About the venue</h2>
             <p className="mt-2">{venue.description}</p>
           </section>
         </div>

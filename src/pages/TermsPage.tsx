@@ -31,9 +31,7 @@ export function TermsPage() {
     >
       {sections.map(({ heading, text }) => (
         <section key={heading}>
-          <h2 className="mb-2 text-xl font-semibold text-gray-900">
-            {heading}
-          </h2>
+          <h2 className="mb-2 text-gray-900">{heading}</h2>
           <p>{text}</p>
         </section>
       ))}

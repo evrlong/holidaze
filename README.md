@@ -129,7 +129,6 @@ src/
 └── router.tsx      Route definitions
 ```
 
-
 ### Good to know
 
 - **Two roles = two accounts.** Venue manager status is chosen at
@@ -142,7 +141,6 @@ src/
   or broken images (a placeholder image is shown instead).
 - **Light mode only.** The site is locked to light mode, so browsers that
   force dark mode should not change its colors.
-
 
 ### Test flow
 
@@ -160,7 +158,7 @@ src/
 ### Known limitations
 
 - Ratings are not shown, because the project has no rating system.
-- Location autocomplete was removed because it froze on several devices, ans contained too many test locations. 
+- Location autocomplete was removed because it froze on several devices, ans contained too many test locations.
 
 ## Deployment
 
@@ -173,9 +171,6 @@ The site is deployed on Netlify:
 
 ## Links
 
-
 - [Figma design](https://www.figma.com/design/Z1qtHNbFThFPx3mRwngS9r/Holidaze?node-id=1-264)
 - [Kanban board](https://github.com/users/evrlong/projects/2/views/1)
 - [Style guide](https://www.figma.com/design/Z1qtHNbFThFPx3mRwngS9r/Holidaze?node-id=1-265)
-
-

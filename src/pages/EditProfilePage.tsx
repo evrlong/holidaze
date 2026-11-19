@@ -58,7 +58,7 @@ export function EditProfilePage() {
       >
         Back to profile
       </Link>
-      <h1 className="my-6 text-3xl font-bold text-neutral-500">Edit profile</h1>
+      <h1 className="my-6 text-neutral-500">Edit profile</h1>
       <form
         onSubmit={handleSubmit}
         className="space-y-5 rounded-xl border border-gray-100 bg-white p-5 shadow-md sm:p-8"

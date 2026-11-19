@@ -26,7 +26,7 @@ export function MyVenuesPage() {
   if (!venues?.length)
     return (
       <section>
-        <h2 className="mb-6 text-2xl font-semibold text-gray-600">My venues</h2>
+        <h2 className="mb-6 text-gray-600">My venues</h2>
         <div className="rounded-xl bg-gray-50 px-6 py-10 text-center">
           <p className="text-gray-600">You haven't listed any venues yet.</p>
           <Link
@@ -42,7 +42,7 @@ export function MyVenuesPage() {
   return (
     <div className="lg:grid lg:grid-cols-[20rem_1fr] lg:gap-8">
       <section>
-        <h2 className="mb-6 text-2xl font-semibold text-gray-600">My venues</h2>
+        <h2 className="mb-6 text-gray-600">My venues</h2>
         <ul className="space-y-5">
           {venues.map((venue) => {
             const isSelected = venue.id === selectedId;
@@ -84,7 +84,7 @@ export function MyVenuesPage() {
       </section>
 
       <aside className="hidden self-start lg:sticky lg:top-8 lg:block">
-        <h2 className="mb-6 truncate text-2xl font-semibold text-gray-600">
+        <h2 className="mb-6 truncate text-gray-600">
           {selectedVenue ? (
             <>
               Bookings for{" "}
