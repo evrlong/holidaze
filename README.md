@@ -178,6 +178,4 @@ The site is deployed on Netlify:
 - [Kanban board](https://github.com/users/evrlong/projects/2/views/1)
 - [Style guide](https://www.figma.com/design/Z1qtHNbFThFPx3mRwngS9r/Holidaze?node-id=1-265)
 
-## Author
 
-[evrlong](https://github.com/evrlong)
